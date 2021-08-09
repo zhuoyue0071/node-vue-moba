@@ -8,9 +8,11 @@
       <el-form-item label="图标">
         <el-upload
           class="avatar-uploader"
-          :action="$http.defaults.baseURL + '/upload'"
+          :action="uploadUrl"
+          :headers="getAuthHeaders()"
           :show-file-list="false"
           :on-success="afterUpload"
+          :on-error="uploadFail"
         >
           <img v-if="model.icon" :src="model.icon" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -31,6 +33,9 @@ export default {
   data() {
     return {
       model: {},
+      getHeaders: localStorage.token
+        ? { Authorization: localStorage.token }
+        : {},
     };
   },
   created() {
@@ -55,8 +60,16 @@ export default {
       this.model = res.data;
     },
     afterUpload(res, file) {
-      this.$set(this.model, 'icon', res.url)
+      this.$set(this.model, "icon", res.url);
     },
+    // uploadFail(res) {
+    //   if (res.message) {
+    //    this.$message.error(JSON.parse(res.message).message);
+    //   }
+    //   if (res.status === 401) {
+    //     this.$router.push("/login");
+    //   }
+    // },
   },
 };
 </script>

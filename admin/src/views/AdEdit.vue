@@ -14,11 +14,13 @@
             <el-form-item label="跳转链接（URL):">
               <el-input v-model="item.url"></el-input>
             </el-form-item>
-            <el-form-item  style="margin-top:0.5rem" label="图片:">
+            <el-form-item style="margin-top: 0.5rem" label="图片:">
               <el-upload
                 class="avatar-uploader"
-                :action="$http.defaults.baseURL + '/upload'"
+                :action="uploadUrl"
+                :headers="getAuthHeaders()"
                 :show-file-list="false"
+                :on-error="uploadFail"
                 :on-success="(res) => $set(item, 'image', res.url)"
               >
                 <img v-if="item.image" :src="item.image" class="avatar" />
