@@ -24,7 +24,7 @@
           <i class="sprite sprite-news"></i>
           <div class="py-2">爆料站</div>
         </div>
-        <div class="nav-item mb-3" v-for="n in 6" :key="n">
+        <div class="nav-item mb-3" v-for="v in 6" :key="v + 6">
           <i class="sprite sprite-story"></i>
           <div class="py-2">故事站</div>
         </div>
@@ -34,14 +34,54 @@
         <span>收起</span>
       </div>
     </div>
+
+    <!-- end of nav icons -->
+    <m-card title="新闻资讯" icon="news">
+      <template v-slot:card-body>
+        <div class="nav jc-between">
+          <div class="nav-item active">
+            <div class="nav-link">热门</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-link">新闻</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-link">新闻</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-link">新闻</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-link">新闻</div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <swiper>
+            <swiper-slide v-for="k in 5" :key="k">
+              <div class="py-2" v-for="i in 5" :key="i">
+                <span>[新闻]</span>
+                <span> |</span>
+                <span>《王者荣耀》中单霸主猫神的操作极限在哪里?</span>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </div>
+      </template>
+    </m-card>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
 export default {
   name: "Home",
+  components: {},
   data() {
     return {
       swiperOptions: {
@@ -52,7 +92,6 @@ export default {
       },
     };
   },
-  components: {},
   computed: {
     swiper() {
       return this.$refs.mySwiper.$swiper;
@@ -84,5 +123,4 @@ export default {
     }
   }
 }
-
 </style>
