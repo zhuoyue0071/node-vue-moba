@@ -36,44 +36,22 @@
     </div>
 
     <!-- end of nav icons -->
-    <m-card title="新闻资讯" icon="news">
-      <template v-slot:card-body>
-        <div class="nav jc-between">
-          <div class="nav-item active">
-            <div class="nav-link">热门</div>
-          </div>
-          <div class="nav-item">
-            <div class="nav-link">新闻</div>
-          </div>
-          <div class="nav-item">
-            <div class="nav-link">新闻</div>
-          </div>
-          <div class="nav-item">
-            <div class="nav-link">新闻</div>
-          </div>
-          <div class="nav-item">
-            <div class="nav-link">新闻</div>
-          </div>
-        </div>
-
-        <div class="pt-2">
-          <swiper>
-            <swiper-slide v-for="k in 5" :key="k">
-              <div class="py-2" v-for="i in 5" :key="i">
-                <span>[新闻]</span>
-                <span> |</span>
-                <span>《王者荣耀》中单霸主猫神的操作极限在哪里?</span>
-              </div>
-            </swiper-slide>
-          </swiper>
+    <m-list-card icon="Menu" title="新闻资讯" :categories="newsCats">
+      <template #items="{ category }">
+        <div class="py-2 card-item" v-for="(news, i) in category.newsList" :key="i">
+          <span>{{ news.categoryName }}</span>
+          <span> |</span>
+          <span>{{ news.title }}</span>
+          <span>{{ news.date }}</span>
         </div>
       </template>
-    </m-card>
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
+    </m-list-card>
+
+    <p>gogog</p>
+    <p>gogog</p>
+    <p>gogog</p>
+    <p>gogog</p>
+    <p>gogog</p>
   </div>
 </template>
 
@@ -90,6 +68,49 @@ export default {
         },
         // Some Swiper option/callback...
       },
+      newsCats: [
+        {
+          name: "热门",
+          newsList: new Array(5).fill({}).map((v) => ({
+            categoryName: "热门",
+            title: "元歌皮肤设计大赛精彩创意赏析第十二期",
+            date: "04/03",
+          })),
+        },
+        {
+          name: "新闻",
+          newsList: new Array(5).fill({}).map((v) => ({
+            categoryName: "新闻",
+            title: "又至一年花朝，斗鱼花朝节限定福利如约而至",
+            date: "04/03",
+          })),
+        },
+        {
+          name: "公告",
+          newsList: new Array(5).fill({}).map((v) => ({
+            categoryName: "公告",
+            title: "3月4日体验服停机更新公告",
+            date: "04/03",
+          })),
+        },
+        {
+          name: "活动",
+          newsList: new Array(5).fill({}).map((v) => ({
+            categoryName: "活动",
+            title:
+              "【微信用户专属】微信小程序“游戏礼品站”购买花朝节限定皮肤抽免单活动",
+            date: "04/03",
+          })),
+        },
+        {
+          name: "赛事",
+          newsList: new Array(5).fill({}).map((v) => ({
+            categoryName: "供稿",
+            title: "K甲第三周回顾：MD持续霸榜，中游战况胶着",
+            date: "04/03",
+          })),
+        },
+      ],
     };
   },
   computed: {
@@ -100,7 +121,7 @@ export default {
   mounted() {},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/scss/variables";
 .pagination-home {
   .swiper-pagination-bullet {
@@ -122,5 +143,10 @@ export default {
       border: none;
     }
   }
+}
+.card-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

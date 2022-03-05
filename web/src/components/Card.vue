@@ -28,5 +28,6 @@ export default {
     .card-header{
         border-bottom: 1px solid $border-color;
     }
+    border-bottom: 1px solid $border-color;
 }
 </style>
