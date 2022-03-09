@@ -5,7 +5,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
 
-
+import axios from 'axios'
+Vue.prototype.$http = axios.create({
+  baseURL: 'http://localhost:3000/web/api'
+})
 
 Vue.config.productionTip = false
 
