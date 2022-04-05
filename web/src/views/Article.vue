@@ -14,8 +14,8 @@
         <i class="iconfont icon-menu"></i>
         <strong class="text-blue fs-lg ml-1">相关资讯</strong>
       </div>
-      <div>
-        <router-link :to="`/articles/${item._id}`" tag="div" v-for="item in model.related" :key="item._id">
+      <div class="pt-2 fs-lg">
+        <router-link class="py-2" :to="`/articles/${item._id}`" tag="div" v-for="item in model.related" :key="item._id">
           {{item.title}}
         </router-link>
       </div>
@@ -38,6 +38,9 @@ export default {
       const res = await this.$http.get(`/articles/${this.id}`);
       this.model = res.data;
     },
+  },
+  watch:{
+    id:'fetch',
   },
   created() {
     this.fetch();
